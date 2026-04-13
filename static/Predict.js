@@ -1,10 +1,10 @@
-const city = document.getElementById('city-input').value;
+const city_ip = document.getElementById('city-input');
 const resultTitle = document.getElementById('risk-value');
 const resultDesc = document.getElementById('risk-desc');
 
 document.getElementById('predict-btn').addEventListener('click',
     ()=>{
-        if (checkEmpty(city)){calculate()}
+        if (checkEmpty(city_ip.value)){calculate()}
         else {console.alert('Enter a city to predict')}
     }
 );
@@ -19,6 +19,7 @@ function checkEmpty(element)
 }
 
 function calculate(){
+const city = city_ip.value;
 fetch('/calculate',{
     method:"POST",
     headers: {
