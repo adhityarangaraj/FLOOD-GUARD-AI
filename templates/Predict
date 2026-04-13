@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predict Risk | Logicore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="static/predict.css">
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <img src="static/Images/logo2.jpeg" alt="Logo" />
+      <span class="nav-logo-text">Logicore.io</span>
+    </div>
+    <div class="nav-links">
+      <a href="Home.html">Home</a>
+      <a href="Home.html#vision">Vision</a>
+      <a href="/predict" class="nav-cta">Try Now</a>
+    </div>
+  </nav>
+
+  <main class="predict-container">
+    <section id="input-card" class="glass-card">
+      <div class="card-header">
+        <h2>Flood Risk Assessment</h2>
+        <p>Enter your city or select a point on the map to begin analysis.</p>
+      </div>
+
+      <div class="input-group">
+        <input type="text" id="city-input" placeholder="Enter City Name (e.g., Chennai, Mumbai)">
+        <span class="separator">OR</span>
+        <div class="map-placeholder" id="map-btn">
+            <div class="map-overlay">
+                <span>📍 Select from Map</span>
+            </div>
+        </div>
+      </div>
+
+      <button id="predict-btn" class="btn-primary">Predict Now</button>
+    </section>
+
+    <section id="loader-section" class="hidden">
+      <div class="water-loader">
+        <div class="water"></div>
+      </div>
+      <p id="loading-text">Gathering Satellite Data...</p>
+    </section>
+
+    <section id="result-section" class="hidden">
+      <div class="result-card high-risk"> <span class="risk-label">Analysis Complete</span>
+        <h1 id="risk-value">High Risk</h1>
+        <p id="risk-desc">Immediate action advised. Storm surge detected.</p>
+      </div>
+
+      <div class="emergency-box">
+        <h3>🚨 Emergency Precautions</h3>
+        <ul class="precautions-list">
+            <li>Move to higher ground immediately.</li>
+            <li>Turn off all electrical utilities at the main switch.</li>
+            <li>Keep an emergency kit with food, water, and medicine ready.</li>
+        </ul>
+        <div class="contacts">
+            <div class="contact-item"><strong>NDRF:</strong> 011-24363260</div>
+            <div class="contact-item"><strong>Police:</strong> 100</div>
+            <div class="contact-item"><strong>Ambulance:</strong> 102</div>
+        </div>
+      </div>
+      <button onclick="location.reload()" class="btn-secondary">New Prediction</button>
+    </section>
+  </main>
+
+  <script src="static/predict.js"></script>
+</body>
+</html>
