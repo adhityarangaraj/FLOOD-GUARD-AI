@@ -6,6 +6,7 @@
   <title>Predict Risk | Logicore</title>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="static/predict.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
@@ -36,7 +37,16 @@
                 <span>📍 Select from Map</span>
             </div>
         </div>
+        <div id="map-modal">
+          <div id="leaflet-map" style="height: 400px;">
+          </div>
+          <button id="map-close-btn"> CLOSE </button>
+          <button id = "map-confirm-btn"> CONFIRM </button>
+          <div id="map-coords-display"></div>
+        </div>
       </div>
+
+      
 
       <button id="predict-btn" class="btn-primary">Predict Now</button>
     </section>
@@ -71,6 +81,9 @@
     </section>
   </main>
 
-  <script src="static/predict.js"></script>
+  <script src="static/predict1.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
 </body>
 </html>
