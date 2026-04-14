@@ -32,18 +32,18 @@
       <div class="input-group">
         <input type="text" id="city-input" placeholder="Enter City Name (e.g., Chennai, Mumbai)">
         <span class="separator">OR</span>
-        <div class="map-placeholder" id="map-btn">
+        <div class="map-placeholder" id="map-btn" style="height:700px;">
             <div class="map-overlay">
                 <span>📍 Select from Map</span>
             </div>
         </div>
-        <div id="map-modal">
-          <div id="leaflet-map" style="height: 400px;">
+        <!-- <div id="map-modal">
+          <div id="leaflet-map" style="height: 700px;">
           </div>
           <button id="map-close-btn"> CLOSE </button>
           <button id = "map-confirm-btn"> CONFIRM </button>
           <div id="map-coords-display"></div>
-        </div>
+        </div> -->
       </div>
 
       
@@ -81,9 +81,10 @@
     </section>
   </main>
 
-  <script src="static/predict1.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
+  <script src="static/predict.js"></script>
+  
 </body>
 </html>
