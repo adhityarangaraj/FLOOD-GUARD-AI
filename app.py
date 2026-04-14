@@ -14,12 +14,11 @@ def home():
 @app.route('/calculate',methods=['POST'])
 def calculate():
      data = request.get_json()
+     print(data)
      city=data.get('city')
      if data.get('lat') and data.get('lon'):
           lat=data.get('lat')
           lon=data.get('lon')
-          if lat or lon is None:
-               return None
           weather=getweather_coord(lat,lon)
      elif data.get('city'):
           weather=getweather_city(city)
@@ -27,6 +26,7 @@ def calculate():
           return jsonify({"result":"invalid city input is given"}),400
      if weather is None:
           return jsonify({"result":"Server error ,unable to fetch api"}),400
+     print(weather)
      rain=weather[0][0]
      prediction = model.predict_proba(weather)[0][1]
      risk_percent=round(prediction*100,2)

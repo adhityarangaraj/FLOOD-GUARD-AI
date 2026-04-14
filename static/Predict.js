@@ -1,11 +1,12 @@
 const city_ip = document.getElementById('city-input');
 const resultTitle = document.getElementById('risk-value');
 const resultDesc = document.getElementById('risk-desc');
-
+let selectedLat = null;
+let selectedLon = null;
 document.getElementById('predict-btn').addEventListener('click',
     ()=>{
         if (checkEmpty(city_ip.value)){calculate()}
-        else {console.alert('Enter a city to predict')}
+        else {alert('Enter a city to predict')}
     }
 );
 document.getElementById('city-input').addEventListener('keydown',(e)=>{
@@ -25,7 +26,7 @@ fetch('/calculate',{
     headers: {
         "Content-Type":"application/json"
     },
-    body: JSON.stringify({'city':city})
+    body: JSON.stringify(selectedLat ? {lat: selectedLat, lon: selectedLon} : {city: city})
     }
     )
     .then(response=> {
@@ -71,8 +72,11 @@ function showResult() {
     
 }
 
-// Simple Map Selection Mockup
-document.getElementById('map-btn').addEventListener('click', function() {
-    document.getElementById('city-input').value = "Coordinates: 10.7870° N, 79.1378° E";
-    alert("Location pinned via Map!");
+const map = L.map('map-btn').setView([20.5937, 78.9629], 4);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+map.on('click', function(e) {
+    selectedLat = e.latlng.lat;
+    selectedLon = e.latlng.lng;
+    city_ip.value = `📍 ${selectedLat.toFixed(4)}, ${selectedLon.toFixed(4)}`;
 });

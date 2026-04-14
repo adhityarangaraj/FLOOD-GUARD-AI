@@ -6,6 +6,8 @@
   <title>Predict Risk | Logicore</title>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="static/predict.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -27,15 +29,10 @@
         <h2>Flood Risk Assessment</h2>
         <p>Enter your city or select a point on the map to begin analysis.</p>
       </div>
-
       <div class="input-group">
         <input type="text" id="city-input" placeholder="Enter City Name (e.g., Chennai, Mumbai)">
         <span class="separator">OR</span>
-        <div class="map-placeholder" id="map-btn">
-            <div class="map-overlay">
-                <span>📍 Select from Map</span>
-            </div>
-        </div>
+        <div id="map-btn" style="height:200px; border-radius:12px; z-index:1;"></div>
       </div>
 
       <button id="predict-btn" class="btn-primary">Predict Now</button>
