@@ -1,6 +1,6 @@
 from flask import Flask, render_template,request,jsonify
 import requests
-from weather1 import getweather
+from weather1 import getweather_city,getweather_coord
 import pickle
 import json
 app=Flask(__name__)
@@ -15,7 +15,18 @@ def home():
 def calculate():
      data = request.get_json()
      city=data.get('city')
-     weather=getweather(city)
+     if data.get('lat') and data.get('lon'):
+          lat=data.get('lat')
+          lon=data.get('lon')
+          if lat or lon is None:
+               return None
+          weather=getweather_coord(lat,lon)
+     elif data.get('city'):
+          weather=getweather_city(city)
+     else:
+          return jsonify({"result":"invalid city input is given"}),400
+     if weather is None:
+          return jsonify({"result":"Server error ,unable to fetch api"}),400
      rain=weather[0][0]
      prediction = model.predict_proba(weather)[0][1]
      risk_percent=round(prediction*100,2)
