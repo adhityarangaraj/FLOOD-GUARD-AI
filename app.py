@@ -19,7 +19,7 @@ def calculate():
      city=data.get('city')
      if data.get('lat') and data.get('lon'):
           lat=data.get('lat')
-     
+          lon=data.get('lon')
           try:
                weather=getweather_coord(lat,lon)
           except serverError as e:
