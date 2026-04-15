@@ -1,17 +1,10 @@
 const cityinput = document.getElementById('city-input');
 const resultTitle = document.getElementById('risk-value');
 const resultDesc = document.getElementById('risk-desc');
-let selectedLat = null;
-let selectedLon = null;
+let controlLoad=0;
+
 document.getElementById('predict-btn').addEventListener('click',
-
-    
-
-    
-        if (checkEmpty(city_ip.value)){calculate()}
-        else {alert('Enter a city to predict')}
- 
-
+   ()=> {calculate();} 
 );
 document.getElementById('city-input').addEventListener('keydown',(e)=>{
     if (e.key=='Enter'){calculate();}
@@ -19,7 +12,6 @@ document.getElementById('city-input').addEventListener('keydown',(e)=>{
 
 
 function calculate(){
-let controlLoad=0;
 const requestData = (selectedLat && selectedLon)
 ?{'lat':selectedLat,'lon':selectedLon}
 :{'city':cityinput.value}
@@ -29,10 +21,7 @@ fetch('/calculate',{
     headers: {
         "Content-Type":"application/json"
     },
-
     body: JSON.stringify(requestData)
-
-    body: JSON.stringify(selectedLat ? {lat: selectedLat, lon: selectedLon} : {city: city})
     }
     )
     .then(response=> {
@@ -40,7 +29,8 @@ fetch('/calculate',{
     })
     .then(data=>{
     if (data.ok)
-        {    resultTitle.innerText = data.result;
+        {   controlLoad=0; 
+            resultTitle.innerText = data.result;
 
             if(data.result==='SEVERE RISK!!!'){resultDesc.innerText = "Probability of flooding exceeds 70%. Evacuate low-lying areas.";}
             else if (data.result==='MODERATE RISK!!!'){resultDesc.innerText = "Probability of flooding is less than 70%. Be alert and constantly monitor the weather conditions."}
@@ -77,10 +67,10 @@ fetch('/calculate',{
             if (i<texts.length){
                 loadingText.innerText=texts[i];
                 i++;
-                if (controlLoad === 1) {clearInterval(interval);resolve();}
-                else if (controlLoad === 2 && i==3) {clearInterval(interval);resolve();}
+                if (controlLoad === 1 && i===2) {console.log('abc');clearInterval(interval);resolve();}
+                else if (controlLoad === 2 && i===3) {console.log('123');clearInterval(interval);resolve();}
             }
-            else{clearInterval(interval);resolve();}
+            else{console.log('sidd');clearInterval(interval);resolve();}
         },1500)
     }).then(()=>{showResult();})
 
@@ -93,7 +83,6 @@ function showResult() {
     document.getElementById('result-section').classList.remove('hidden');
     
 }
-
 
 const map = L.map('map-btn').setView([20.5937, 78.9629], 5);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -113,22 +102,13 @@ let selectedLon = null;
 
 map.on('click', function(e) {
     // In C terms, 'e' is like a pointer to the event data structure
-  selectedLat = e.latlng.lat;
-  selectedLon = e.latlng.lng;
+    selectedLat = e.latlng.lat;
+    selectedLon = e.latlng.lng;
 
 cityinput.value = `📍 ${selectedLat.toFixed(4)}, ${selectedLon.toFixed(4)}`;
 if (currentMarker) {
-      currentMarker.setLatLng(e.latlng); // Move existing
-  } else {
-      currentMarker = L.marker(e.latlng, { icon: waterDropIcon }).addTo(map); // Create new
-  }
-
-const map = L.map('map-btn').setView([20.5937, 78.9629], 4);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-map.on('click', function(e) {
-  selectedLat = e.latlng.lat;
-  selectedLon = e.latlng.lng;
-  city_ip.value = `📍 ${selectedLat.toFixed(4)}, ${selectedLon.toFixed(4)}`;
-
+        currentMarker.setLatLng(e.latlng); // Move existing
+    } else {
+        currentMarker = L.marker(e.latlng, { icon: waterDropIcon }).addTo(map); // Create new
+    }
 });

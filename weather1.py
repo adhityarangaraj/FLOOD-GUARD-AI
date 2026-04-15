@@ -12,12 +12,7 @@ def getweather_coord(lat,lon):
             raise serverError('Unable to fetch weather info!!')
         data=response.json()
         if data is None:
-
             raise serverError('Unable to fetch weather info!!')
-
-            return None
-        print(data.keys())
-
         rain = sum(data['hourly']['precipitation'])
         soil = data['hourly']['soil_moisture_0_to_1cm'][-1]* 100
         return [(rain,soil,min(data['elevation'],45))] 
@@ -31,6 +26,7 @@ def getweather_city(city):
     # if lat is None or lon is None:
     #     return None
     return getweather_coord(lat,lon)
+
 
 
 
