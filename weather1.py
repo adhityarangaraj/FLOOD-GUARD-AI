@@ -1,5 +1,6 @@
 import requests
 from location import locate
+from error import cityError,serverError
 def getweather_coord(lat,lon):
     coordinates=[lat,lon]
     if coordinates is None:
@@ -8,20 +9,27 @@ def getweather_coord(lat,lon):
     try:
         response = requests.get(url)
         if response.status_code!=200:
-            return None
+            raise serverError('Unable to fetch weather info!!')
         data=response.json()
         if data is None:
+
+            raise serverError('Unable to fetch weather info!!')
+
             return None
         print(data.keys())
+
         rain = sum(data['hourly']['precipitation'])
         soil = data['hourly']['soil_moisture_0_to_1cm'][-1]* 100
         return [(rain,soil,min(data['elevation'],45))] 
     except:
-        return None 
+        raise serverError('Unable to fetch weather info!!')
 def getweather_city(city):
-    lat,lon=locate(city)
-    if lat is None or lon is None:
-        return None
+    try:
+        lat,lon=locate(city)
+    except cityError:
+        raise cityError('Invalid City Name')
+    # if lat is None or lon is None:
+    #     return None
     return getweather_coord(lat,lon)
 
 

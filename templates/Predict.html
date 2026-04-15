@@ -6,8 +6,12 @@
   <title>Predict Risk | Logicore</title>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="static/predict.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </head>
 <body>
 
@@ -32,8 +36,25 @@
       <div class="input-group">
         <input type="text" id="city-input" placeholder="Enter City Name (e.g., Chennai, Mumbai)">
         <span class="separator">OR</span>
+
+        <div class="map-placeholder" id="map-btn" style="height:700px;">
+            <div class="map-overlay">
+                <span>📍 Select from Map</span>
+            </div>
+        </div>
+        <!-- <div id="map-modal">
+          <div id="leaflet-map" style="height: 700px;">
+          </div>
+          <button id="map-close-btn"> CLOSE </button>
+          <button id = "map-confirm-btn"> CONFIRM </button>
+          <div id="map-coords-display"></div>
+        </div> -->
+
         <div id="map-btn" style="height:200px; border-radius:12px; z-index:1;"></div>
+ 
       </div>
+
+      
 
       <button id="predict-btn" class="btn-primary">Predict Now</button>
     </section>
@@ -68,6 +89,10 @@
     </section>
   </main>
 
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
   <script src="static/predict.js"></script>
+  
 </body>
 </html>

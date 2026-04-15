@@ -1,5 +1,5 @@
 from geopy.geocoders import Nominatim
-
+from error import cityError,serverError
 # Initialize Nominatim API (user_agent is required)
 geolocator = Nominatim(user_agent="my_location")
 
@@ -9,4 +9,4 @@ def locate(city):
     if location:
         return [location.latitude, location.longitude]
     else:
-        return None
+        raise cityError

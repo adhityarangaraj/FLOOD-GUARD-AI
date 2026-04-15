@@ -3,6 +3,7 @@ import requests
 from weather1 import getweather_city,getweather_coord
 import pickle
 import json
+from error import cityError,serverError
 app=Flask(__name__)
 with open('flood_model1.pkl','rb') as f:
         model = pickle.load(f)
@@ -18,7 +19,19 @@ def calculate():
      city=data.get('city')
      if data.get('lat') and data.get('lon'):
           lat=data.get('lat')
-          lon=data.get('lon')
+     
+          try:
+               weather=getweather_coord(lat,lon)
+          except serverError as e:
+               return jsonify({"result": str(e), "type":2}),400
+     elif data.get('city'):
+          try:
+               weather=getweather_city(city)
+          except serverError as e:
+               return jsonify({"result": str(e),"type":2}),400
+          except cityError as e:
+               return jsonify({"result":str(e),"type":1}),400
+
           weather=getweather_coord(lat,lon)
      elif data.get('city'):
           weather=getweather_city(city)
@@ -27,6 +40,7 @@ def calculate():
      if weather is None:
           return jsonify({"result":"Server error ,unable to fetch api"}),400
      print(weather)
+
      rain=weather[0][0]
      prediction = model.predict_proba(weather)[0][1]
      risk_percent=round(prediction*100,2)
@@ -37,7 +51,7 @@ def calculate():
           label="MODERATE RISK!!!"
      else:
           label="SEVERE RISK!!!"
-     return jsonify({"result":label})
+     return jsonify({"result":label}),200
 
 
 

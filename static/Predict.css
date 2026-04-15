@@ -139,7 +139,7 @@ nav {
   height: 200%;
   background-color: var(--primary-blue);
   border-radius: 40%;
-  animation: wave 3s linear forwards, rotate 4s linear forwards;
+  animation: wave 7.5s linear forwards, rotate 20s linear forwards;
 }
 
 @keyframes rotate {
@@ -149,7 +149,7 @@ nav {
 
 @keyframes wave {
   0% { top: 100%; }
-  100% { top: 30%; }
+  100% { top: 0%; }
 }
 
 /* RESULTS */
