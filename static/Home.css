@@ -30,7 +30,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 5%;
+  padding: 5px;
   background: var(--glass);
   backdrop-filter: blur(10px);
   z-index: 1000;
@@ -43,7 +43,7 @@ nav {
   gap: 10px;
 }
 
-.nav-logo img { height: 32px; }
+.nav-logo img { height: 105px; }
 
 .nav-logo-text {
   font-weight: 800;
@@ -51,6 +51,12 @@ nav {
   font-size: 1.2rem;
 }
 
+.nav-logo-text-main {
+  font-weight: 800;
+  color: var(--primary-blue);
+  font-size: 2rem;
+  margin-left:325px;
+}
 .nav-links a {
   text-decoration: none;
   color: var(--text-dark);
@@ -87,7 +93,7 @@ nav {
   filter: brightness(1.1);
 }
 
-/* HERO SECTION */
+
 .hero {
   position: relative;
   height: 100vh;

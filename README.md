@@ -1,4 +1,4 @@
-## FloodGuard AI
+### FloodGuard AI
 
 FloodGuard AI is a machine learning-powered web application that predicts flood risk using real-time weather data and geographic inputs.
 

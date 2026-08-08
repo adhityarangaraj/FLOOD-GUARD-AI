@@ -12,13 +12,13 @@
 
   <nav>
     <div class="nav-logo">
-      <img src="static/Images/logo2.jpeg" alt="Logo" />
-      <span class="nav-logo-text">Logicore.io</span>
+      <span class="nav-logo-text">FloodGuard AI</span>
     </div>
     <div class="nav-links">
-      <a href="Home.html">Home</a>
-      <a href="Home.html#vision">Vision</a>
-      <a href="/predict" class="nav-cta">Try Now</a>
+      <a href="/">Home</a>
+      <a href="/#vision">Mission</a>
+      <a href="/#future" class="nav-cta">The Future</a>
+      <a href="/#about">About Us</a>
     </div>
   </nav>
 
@@ -28,27 +28,23 @@
         <h2>Flood Risk Assessment</h2>
         <p>Enter your city or select a point on the map to begin analysis.</p>
       </div>
-
+      
       <div class="input-group">
         <input type="text" id="city-input" placeholder="Enter City Name (e.g., Chennai, Mumbai)">
         <span class="separator">OR</span>
-        <div class="map-placeholder" id="map-btn" style="height:700px;">
+        <div class="map-placeholder" id="map-btn" style="height:400px;">
             <div class="map-overlay">
                 <span>📍 Select from Map</span>
             </div>
         </div>
-        <!-- <div id="map-modal">
-          <div id="leaflet-map" style="height: 700px;">
-          </div>
-          <button id="map-close-btn"> CLOSE </button>
-          <button id = "map-confirm-btn"> CONFIRM </button>
-          <div id="map-coords-display"></div>
-        </div> -->
       </div>
 
-      
-
       <button id="predict-btn" class="btn-primary">Predict Now</button>
+      
+      <div id="error-toast" class="error-toast hidden">
+          <span id="error-message"></span>
+          <button id="close-error" class="close-btn">&times;</button>
+      </div>
     </section>
 
     <section id="loader-section" class="hidden">
@@ -59,32 +55,19 @@
     </section>
 
     <section id="result-section" class="hidden">
-      <div class="result-card high-risk"> <span class="risk-label">Analysis Complete</span>
+      <div id="result-card-box" class="result-card"> 
+        <span class="risk-label">Analysis Complete</span>
         <h1 id="risk-value"></h1>
         <p id="risk-desc"></p>
       </div>
 
-      <div class="emergency-box">
-        <h3>🚨 Emergency Precautions</h3>
-        <ul class="precautions-list">
-            <li>Move to higher ground immediately.</li>
-            <li>Turn off all electrical utilities at the main switch.</li>
-            <li>Keep an emergency kit with food, water, and medicine ready.</li>
-        </ul>
-        <div class="contacts">
-            <div class="contact-item"><strong>NDRF:</strong> 011-24363260</div>
-            <div class="contact-item"><strong>Police:</strong> 100</div>
-            <div class="contact-item"><strong>Ambulance:</strong> 102</div>
+      <div class="emergency-box" id="info-box">
         </div>
-      </div>
       <button onclick="location.reload()" class="btn-secondary">New Prediction</button>
     </section>
   </main>
 
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="static/predict.js"></script>
-  
 </body>
 </html>
